@@ -1,13 +1,11 @@
 fx_version 'cerulean'
 game 'gta5'
+lua54 'yes'
 
-author 'Plenix Network - alexasecas'
+NAME 'plenix-fivem-available-service-discord-notifications'
+author 'Plenix Network'
 description 'Easy Discord Available Service Notification'
 version '2.0.0'
--- Latest Release: 10/08/2024
-
--- Plenix: https://plenix.net
--- Discord: https://discord.plenix.net
 
 client_script 'client/client.lua'
 server_script 'server/server.lua'
