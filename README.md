@@ -1,36 +1,129 @@
-Easy Discord Available Service Notification ESX/QBCore
-Description:
-The Easy Discord Available Service Notification script for FiveM ESX is designed to notify a Discord channel when certain jobs are available within the game. The script uses webhooks to send messages to Discord and supports multiple job configurations, customizable notification systems, and cooldown periods between notifications to prevent spam.
+# 📣 Available Service Discord Notifications (ESX/QBCore)
 
-Features:
-- Compatibility with ESX/QBCore
-- Direct compatibility with ESX/QBCore menu dialog for send the webhook.
-- Multiple Job Configurations: Customize webhooks, command names, bot usernames, bot avatars, and messages for different jobs.
-- Cooldown Management: Configurable delay for each job to prevent repeated notifications within a specified time period.
-- Customizable Notification System: Supports default, okokNotify, origen_notify, and custom notification systems for in-game messages.
-- Debug Mode: Enable debug mode to print additional information to the console for troubleshooting.
-- Dev Mode: Enable development mode to send the webhooks to an specific general Discord channel webhook while you are developing.
+**Available Service Discord Notifications** is a lightweight FiveM script that lets players announce they’re **on duty / available** by sending a message to a Discord channel via **webhooks**.
 
-Configuration:
-- The script is configured through the config.lua file, where you can specify settings for each job and general settings such as the notification system and debug mode.
-- You can add more translation files by "locales" folder.
+It supports **ESX and QBCore**, per-job setups, cooldowns to avoid spam, multiple notification systems, and a dev mode for safe testing.
 
-Installation:
-1. Download the script: Download the script and extract it into your resources folder.
-2. Configure the script: Edit the config.lua file to suit your needs.
-3. Add to server.cfg: Add start EasyDiscordAvailableServiceNotification to your server.cfg file.
+---
 
-Commands:
-- Each job has its own command specified in the config.lua file. Players with the corresponding job can use the command to notify Discord of their availability.
+## ✨ Features
 
-Example: /available_police
+- ✅ **ESX + QBCore compatible**
+- 💬 **Direct ESX/QBCore dialog support** (confirm before sending the webhook)
+- 👮 **Multiple job configurations**
+  - Per job: webhook URL, command name, message template, bot username, bot avatar, etc.
+- ⏳ **Per-job cooldown system**
+  - Prevents repeated notifications within a configured time window
+- 🔔 **Customizable in-game notifications**
+  - `default`, `okokNotify`, `origen_notify`, or `custom`
+- 🧪 **Dev Mode**
+  - Redirect all webhooks to a single “general/dev” Discord webhook while testing
+- 🐛 **Debug Mode**
+  - Prints extra info in console for troubleshooting
+- 🌍 **Locales support**
+  - Add translations easily from the `locales/` folder
 
-Notification Systems:
-- The script supports different notification systems for in-game messages:
-  - default: Uses the built-in ESX notifications.
-  - okokNotify: Uses the okokNotify resource for notifications.
-  - origen_notify: Uses the origen_notify resource for notifications.
-  - custom: Allows you to implement your custom notification logic.
+---
 
-License:
-- This project is licensed under the MIT License.
+## 🔗 Dependencies
+
+- **One framework required:**
+  - ESX **or** QBCore
+- *(Optional)* Notification resources (only if selected in config):
+  - `okokNotify`
+  - `origen_notify`
+
+---
+
+## ⚙️ Installation
+
+### A) Manual
+1. Download the resource
+2. Extract it into your `resources` folder
+3. Configure `config.lua`
+4. Add it to your `server.cfg`
+
+### server.cfg
+```cfg
+ensure plenix-available-service-discord-notifications
+```
+
+> ✅ Make sure your framework (ESX/QBCore) is started before this resource.
+
+---
+
+## 🛠️ Configuration
+
+All settings are inside **`config.lua`**.
+
+### Job configuration
+Each job can have its own:
+- Command (example: `/available_police`)
+- Discord webhook URL
+- Webhook identity (bot username + avatar)
+- Message template/content
+- Cooldown time (per job)
+
+### Global configuration
+- Notification system (`default`, `okokNotify`, `origen_notify`, `custom`)
+- Debug mode (extra console logs)
+- Dev mode (force all job webhooks to a single Discord webhook)
+
+---
+
+## 🕹️ Usage
+
+Each configured job gets its own command.
+
+Example:
+```txt
+/available_police
+```
+
+When executed by a player **with the correct job**, the script will:
+1. Show a confirmation dialog (ESX/QBCore menu dialog)
+2. Send the webhook message to the configured Discord channel
+3. Trigger an in-game notification
+4. Start the cooldown timer for that job
+
+---
+
+## 🔔 Notification Systems
+
+Select the one you use in `config.lua`:
+
+- **default**: Framework native notifications (ESX/QBCore)
+- **okokNotify**: Uses the `okokNotify` resource
+- **origen_notify**: Uses the `origen_notify` resource
+- **custom**: Implement your own notification logic in the script
+
+---
+
+## 🧪 Dev Mode
+
+When enabled, the script sends **all job notifications** to a single Discord webhook (your dev/general channel), so you don’t spam real channels while configuring.
+
+---
+
+## 🐛 Debug Mode
+
+Enable debug to print extra logs (useful for):
+- webhook errors
+- cooldown triggers
+- job/permission issues
+- config validation
+
+---
+
+## 🌍 Locales / Translations
+
+Add or edit language files here:
+```txt
+locales/
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
